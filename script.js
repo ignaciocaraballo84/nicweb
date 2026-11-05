@@ -21,12 +21,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const revealItems = document.querySelectorAll('.reveal, .service-card');
-  const serviceCards = document.querySelectorAll('.service-card');
+  const revealItems = document.querySelectorAll(
+    '.reveal, .service-card, .detail-card, .about-grid > *, .contact-grid > *'
+  );
+  const staggeredGroups = document.querySelectorAll(
+    '.cards-grid, .about-grid, .contact-grid'
+  );
 
-  serviceCards.forEach((card, index) => {
-    card.classList.add('reveal-item');
-    card.style.setProperty('--reveal-delay', `${index * 120}ms`);
+  staggeredGroups.forEach((group) => {
+    group.querySelectorAll(':scope > *').forEach((item, index) => {
+      item.classList.add('reveal-item');
+      item.style.setProperty('--reveal-delay', `${index * 120}ms`);
+    });
+  });
+
+  document.querySelectorAll('.detail-card').forEach((item) => {
+    item.classList.add('reveal-item');
   });
 
   if ('IntersectionObserver' in window) {
