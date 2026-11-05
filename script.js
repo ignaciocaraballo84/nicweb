@@ -21,19 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const revealItems = document.querySelectorAll('.reveal');
+  const revealItems = document.querySelectorAll('.reveal, .service-card');
+  const serviceCards = document.querySelectorAll('.service-card');
 
-  const revealOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.88;
+  serviceCards.forEach((card, index) => {
+    card.classList.add('reveal-item');
+    card.style.setProperty('--reveal-delay', `${index * 120}ms`);
+  });
 
-    revealItems.forEach((item) => {
-      const itemTop = item.getBoundingClientRect().top;
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-      if (itemTop < triggerBottom) {
-        item.classList.add('visible');
-      }
-    });
-  };
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('visible'));
+  }
 
   const contactForms = document.querySelectorAll('.contact-form');
   contactForms.forEach((contactForm) => {
@@ -70,7 +79,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1200);
     });
   });
-
-  revealOnScroll();
-  window.addEventListener('scroll', revealOnScroll);
 });
