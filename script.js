@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (carousel) {
     const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
     const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let activeIndex = 0;
     let autoplay;
 
@@ -87,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const startAutoplay = () => {
       stopAutoplay();
       if (
-        !reducedMotion.matches &&
         !carousel.matches(':hover') &&
         !carousel.contains(document.activeElement)
       ) {
@@ -95,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!document.hidden) {
             showSlide(activeIndex + 1);
           }
-        }, 4500);
+        }, 2000);
       }
     };
 
@@ -116,15 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
     carousel.addEventListener('focusin', stopAutoplay);
     carousel.addEventListener('focusout', (event) => {
       if (!carousel.contains(event.relatedTarget)) {
         startAutoplay();
       }
     });
-    reducedMotion.addEventListener('change', startAutoplay);
     startAutoplay();
   }
 
