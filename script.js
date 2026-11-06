@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!document.hidden) {
             showSlide(activeIndex + 1);
           }
-        }, 2000);
+        }, 3000);
       }
     };
 

@@ -356,17 +356,46 @@ body {
 }
 
 .carousel-slide.active img {
-  animation: carousel-zoom 1.2s ease both;
+  animation: carousel-zoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes carousel-zoom {
   from {
-    transform: scale(1.1);
+    filter: blur(5px) brightness(0.72);
+    transform: scale(1.12);
   }
 
   to {
+    filter: blur(0) brightness(1);
     transform: scale(1);
   }
+}
+
+.carousel-title {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 8%;
+  width: min(72%, 850px);
+  margin: 0;
+  font-size: clamp(1.8rem, 4.2vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+  opacity: 0;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.6);
+  transform: translateY(calc(-50% + 18px));
+  transition: opacity 0.5s ease 0.12s, transform 0.5s ease 0.12s;
+}
+
+.carousel-title span {
+  display: block;
+  color: #c4b5fd;
+}
+
+.carousel-slide.active .carousel-title {
+  opacity: 1;
+  transform: translateY(-50%);
 }
 
 .carousel-caption {
@@ -983,6 +1012,18 @@ body {
     bottom: 2rem;
     left: 0.9rem;
     font-size: 1.25rem;
+  }
+
+  .carousel-title {
+    top: 1.5rem;
+    left: 3rem;
+    width: calc(100% - 6rem);
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    transform: translateY(18px);
+  }
+
+  .carousel-slide.active .carousel-title {
+    transform: translateY(0);
   }
 
   .carousel-arrow {
