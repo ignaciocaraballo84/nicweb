@@ -159,7 +159,7 @@ body {
 .hero .hero-grid {
   grid-template-columns: minmax(0, 980px);
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .hero-content,
@@ -252,11 +252,16 @@ body {
   font-weight: 800;
   letter-spacing: -0.075em;
   line-height: 0.99;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.45);
 }
 
 .hero-title-accent {
   display: block;
   color: var(--accent-2);
+  background: linear-gradient(90deg, #c4b5fd, var(--accent), #a78bfa);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(139, 92, 246, 0.32));
 }
 
 .hero-reasons {
@@ -293,6 +298,15 @@ body {
   font-size: 1.08rem;
 }
 
+.hero-intro {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.hero-intro .hero-text {
+  margin-top: 0;
+}
+
 .hero-reasons li:last-child {
   margin-bottom: 0;
 }
@@ -318,12 +332,14 @@ body {
   opacity: 0;
   pointer-events: none;
   text-decoration: none;
-  transition: opacity 0.7s ease;
+  transform: translateX(3%);
+  transition: opacity 0.65s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .carousel-slide.active {
   opacity: 1;
   pointer-events: auto;
+  transform: translateX(0);
 }
 
 .carousel-slide::after {
@@ -340,12 +356,12 @@ body {
 }
 
 .carousel-slide.active img {
-  animation: carousel-zoom 2s ease both;
+  animation: carousel-zoom 1.2s ease both;
 }
 
 @keyframes carousel-zoom {
   from {
-    transform: scale(1.04);
+    transform: scale(1.1);
   }
 
   to {
@@ -363,9 +379,9 @@ body {
   font-weight: 700;
   line-height: 1.1;
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(18px);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-  transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
+  transition: opacity 0.5s ease 0.12s, transform 0.5s ease 0.12s;
 }
 
 .carousel-slide.active .carousel-caption {
@@ -442,6 +458,7 @@ body {
 
 .hero-actions {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
   flex-wrap: wrap;
@@ -938,7 +955,7 @@ body {
   }
 
   .hero .hero-grid {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
   }
 
   .hero-content h1 {
