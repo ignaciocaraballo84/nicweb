@@ -332,13 +332,18 @@ body {
   opacity: 0;
   pointer-events: none;
   text-decoration: none;
-  transform: translateX(3%);
-  transition: opacity 0.65s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  clip-path: inset(0 100% 0 0);
+  transform: translateX(8%) scale(0.96);
+  transition:
+    clip-path 1s cubic-bezier(0.77, 0, 0.18, 1),
+    opacity 0.9s ease,
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .carousel-slide.active {
   opacity: 1;
   pointer-events: auto;
+  clip-path: inset(0);
   transform: translateX(0);
 }
 
@@ -356,18 +361,18 @@ body {
 }
 
 .carousel-slide.active img {
-  animation: carousel-zoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: carousel-zoom 2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes carousel-zoom {
   from {
-    filter: blur(5px) brightness(0.72);
-    transform: scale(1.12);
+    filter: blur(10px) brightness(0.55);
+    transform: translateX(4%) scale(1.25);
   }
 
   to {
     filter: blur(0) brightness(1);
-    transform: scale(1);
+    transform: translateX(0) scale(1);
   }
 }
 
